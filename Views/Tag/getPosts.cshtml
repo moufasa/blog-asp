@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Blog.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h1>Liste des Posts lié au tag : @ViewBag.currentTag</h1>
+<ul>
+@foreach (var post in Model) {
+    <li>@Html.RouteLink(post.Title,"Post", new { id = post.PostId, title = post.Slug })</li>
+}
+</ul>

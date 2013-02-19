@@ -1,0 +1,31 @@
+﻿@model Blog.Models.Tag
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Key</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+<p>
+    @if(Model.Posts.Count == 0){
+        <ul>
+        @foreach (var post in Model.Posts) { 
+           <li> @post.Title</li>           
+        }
+        </ul>
+    }
+    
+</p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TagId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

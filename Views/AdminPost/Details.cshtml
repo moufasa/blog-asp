@@ -1,0 +1,49 @@
+﻿@model Blog.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="page">
+    <div class="page-header">
+        <h2>Details</h2>
+    </div>
+    <fieldset>
+        <legend>Post</legend>
+
+        <div class="display-label">Catégorie</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Categorie.Name)
+        </div>
+
+        <div class="display-label">Author</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Author)
+        </div>
+
+        <div class="display-label">Title</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Title)
+        </div>
+
+        <div class="display-label">Slug</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Slug)
+        </div>
+
+        <div class="display-label">Date</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Date)
+        </div>
+
+        <div class="display-label">Content</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Content)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Editer", new { id=Model.PostId },new { @class = "button bg-color-green"})
+        @Html.ActionLink("Retour à la liste", "Index",  new { id=Model.PostId },new { @class = "button bg-color-blue" })
+    </p>
+
+</div>

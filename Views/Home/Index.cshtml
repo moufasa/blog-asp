@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page secondary with-sidebar">
+        <div class="page-header ">
+            <div class="page-header-content">
+                Un Cms réalisé par : Yanis Ghidouche, Fabien Bonnamy et Aurore Meilender
+            </div>
+        </div>
+            <div class="page-sidebar" style="padding-left:20px;"> 
+                <h3>Catégories</h3>
+            @{Html.RenderAction("GetMenuCategories", "Post");}
+                @{Html.RenderAction("Archive", "Post");}
+
+            </div>
+        <div class="page-region">
+        
+            <div class="page-region-content"> 
+                <div style="margin-left:20px;">        
+                     @{Html.RenderAction("getWithLimit", "Post", new { limit = 10});}
+                </div>               
+             </div>
+        </div>   
+</div>
+
+

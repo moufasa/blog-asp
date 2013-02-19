@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Blog.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page">
+    <div class="page-header">
+        <h3>@Model.Count() catégories Disponibles:</h3>
+    </div>
+
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            @foreach (var category in Model)
+            {
+                <li>@Html.ActionLink(category.Name, "Navigation", new { tag = category.CategoryId })</li>
+            }
+        </ul>
+        <div class="tab-content">
+            @{Html.RenderAction("getWithLimit", "Post", new { limit = 10 });}
+        </div>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>

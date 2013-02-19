@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "_Menu";
+    ViewBag.CurrentController = @ViewContext.Controller.ValueProvider.GetValue("controller").RawValue;
+    ViewBag.CurrentAction = @ViewContext.Controller.ValueProvider.GetValue("action").RawValue;    
+}
+
+
+<div class="nav-bar bg-color-blueDark">
+        <div class="nav-bar-inner">
+            <span class="element">@Html.ActionLink("Kokolitolithe", "Index", "Home")</span>
+            <span class="divider"></span>
+            <ul class="menu">
+                <li> @Html.ActionLink("Accueil", "Index", "Home")</li>
+                <li data-role="dropdown">
+                    <a href="#">Le blog</a>
+                     @{Html.RenderAction("GetMenuCategories", "Post");}
+                </li>
+                @{Html.RenderAction("GetMenuPages", "Page");}
+                <li>
+                @Html.ActionLink("Contact", "Index", "Message")
+                </li>
+            <li>
+                @Html.ActionLink("Administration", "Index", "AdminPost")
+            </li>
+
+
+            </ul>
+                         
+        </div>
+    </div>

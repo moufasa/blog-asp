@@ -1,0 +1,34 @@
+﻿@model MembershipUserCollection
+
+@{
+    ViewBag.Title = "GetUsers";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="page">
+    <div class="page-header">
+        <h2>Liste des utilisateurs</h2>
+    </div>
+    <table class="striped hovered">
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Date inscription</th>
+            <th>Statut</th>
+
+        </tr>
+        @foreach (MembershipUser user in Model){
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.CreationDate</td>
+            @if(user.IsOnline){
+                <td><span class="bg-color-green">En ligne</span></td>
+            } else {
+                <td><span class="bg-color-red">Hors ligne</span></td>
+            }
+        </tr>
+        }
+    </table>
+</div>

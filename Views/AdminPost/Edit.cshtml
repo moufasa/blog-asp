@@ -1,0 +1,120 @@
+﻿@model Blog.Models.PostModelView
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page">
+    
+    <div class="page-header">
+       <h2>Ajouter un article</h2>
+    </div>
+
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Formulaire</legend>
+            @Html.HiddenFor(model => model.currentPost.PostId)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Categorie, "Categories")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("CategoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.currentPost.Categorie)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Tags, "Tags")
+            </div>
+            <div class="editor-field">
+  
+                @Html.ListBoxFor(a => a.SelectedIds, Model.Items, new { Multiple = "multiple" })
+                @Html.ValidationMessageFor(model => model.currentPost.Tags)
+
+            </div>
+
+            <input type="hidden" name="Author" value="@HttpContext.Current.User.Identity.Name" />
+            @if(HttpContext.Current.User.IsInRole("Administrator")){
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.currentPost.Author)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.currentPost.Author)
+                    @Html.ValidationMessageFor(model => model.currentPost.Author)
+                </div>
+            }
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.currentPost.Title)
+                @Html.ValidationMessageFor(model => model.currentPost.Title)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Slug)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.currentPost.Slug)
+                @Html.ValidationMessageFor(model => model.currentPost.Slug)
+            </div>
+
+            <div class="current-date hidden">@DateTime.Now</div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Date)
+            </div>
+            
+
+            <div class="editor-field">
+                <input class="text-box single-line" data-val="true" data-val-required="La date est requise" id="Date" name="currentPost.Date" type="text" value="@DateTime.Now">
+                <span class="field-validation-valid" data-valmsg-for="Date" data-valmsg-replace="true"></span>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Content)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.currentPost.Content)
+                @Html.ValidationMessageFor(model => model.currentPost.Content)
+            </div>
+           
+            <div class="editor-label">
+                @Html.LabelFor(model => model.currentPost.Online)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.currentPost.Online)
+                @Html.ValidationMessageFor(model => model.currentPost.Online)
+            </div>
+            <p>
+                <input type="submit" class="button bg-color-green" value="Enregistrer" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Retour à la liste", "Index", null,new { @class = "button bg-color-blue" })
+    </div>
+</div>
+
+<script type="text/javascript">
+    tinyMCE.init({
+        mode: 'textareas',
+        theme: 'advanced',
+        plugins: 'inlinepopups,paste,image',
+        theme_advanced_buttons1: 'bold,italic,underline,|,bullist,numlist,|,justifyleft,justifycenter,justifyright,justifyfull,|,link,unlink,image,|,formatselect,code',
+        theme_advanced_buttons2: '',
+        theme_advanced_buttons3: '',
+        theme_advanced_buttons4: '',
+        theme_advanced_toolbar_location: 'top',
+        theme_advanced_statusbar_location: 'bottom',
+        theme_advanced_resizing: true,
+        paste_remove_styles: true,
+        paste_remove_spans: true,
+        paste_stip_class_attributes: "all",
+    });
+</script>

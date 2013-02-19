@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Blog.Models.Category>
+
+@{
+    ViewBag.Title = "GetMenuCategories";
+    Layout = null;
+}
+
+
+
+
+<ul class="dropdown-menu">
+    @foreach (var category in Model)
+    {
+        <li>@Html.RouteLink(category.Name,"categorie",new { category = category.CategoryId, title = category.Name } )</li>
+    }
+    <li class="divider"></li>
+    <li><a href="/blog">Tout</a></li>
+</ul>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Blog.Models.Post>
+@{
+    ViewBag.Title = "GetArchives";
+}
+
+<div class="page">
+    <div class="page-header">
+        <h3>Archive  : @ViewBag.Month <span>/</span> @ViewBag.Year</h3>
+    </div>
+    <div class="page-sidebar" style="padding-left:20px;"> 
+                    @{Html.RenderAction("Archive", "Post");}
+    </div>
+     <div class="page-region">
+         <div class="page-region-content"> 
+                 <ul class="listview fluid ">  
+                         @foreach (var post in Model)
+                    {
+                      <li style="margin-left:20px; width:620px;"class="border-color-blue outline-color-red">
+                           <div class="badge  bg-color-white">
+                             <span class=" bg-color-orange" style="padding:5px;">@Html.ActionLink(post.Title, "Details", new { id = post.PostId, title = post.Slug })
+                               </span>
+                            <span class=" bg-color-green" style="padding:5px;"> @post.Categorie.Name</span>  
+                             </div>
+                              <div style="position:relative;float:left;width:400px;padding-top:20px;">
+                                 @Html.Raw(post.Content)
+                            </div>
+                        <div>
+                              <div style="position:relative;float:left;width:180px;padding-left:20px;">
+                            <p>Date : @post.Date.ToString("dd/MM/yyyy")</p>
+                            <p>Auteur : @post.Author</p>
+                             <p>@Html.ActionLink("Lire la suite", "Details", new { id = post.PostId, title = post.Slug}, new { @class="button bg-color-blue" })</p>
+                             Tags : <ul>
+                                 @foreach(var tag in post.Tags) {
+                                    <li style="width:175px; margin : 0px; padding : 3px;"><span>@Html.RouteLink(tag.Name,"tag",new { tagId = tag.TagId, name = tag.Name})</span></li>                                 
+                                 }
+                             </ul>   
+                        </div>
+                        </div>
+                        
+                   </li>
+                           }
+                     </ul>
+              
+           </div>
+        </div>
+       </div>
+   

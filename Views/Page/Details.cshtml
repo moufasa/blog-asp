@@ -1,0 +1,17 @@
+﻿@model Blog.Models.Page
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="page">
+    <div class="page-header bg-color-blue" style="margin-top:10px;">
+            <div class="page-header-content">
+               <h2>@Model.Title</h2>
+            </div>
+        </div>
+    @Html.Raw(Model.Content)
+    <div class="section">
+        <small>@Model.Date.ToString("dd/MM/yyyy")</small>
+    </div>
+</div>

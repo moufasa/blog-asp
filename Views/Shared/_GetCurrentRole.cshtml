@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="span6 offset5">
+        <div class="notices">
+            <div class="bg-color-green">
+                <a href="#" class="close"></a>
+                <div class="notice-header"> 
+                      @if(HttpContext.Current.User.IsInRole("Administrator")) {
+                            <strong>Admin</strong>        
+                        } else {
+                            <strong>Utilisateur</strong>
+                        }           
+                </div>
+                <div class="notice-text">
+                      @if(HttpContext.Current.User.IsInRole("Administrator")) {
+                            <p>vous pouvez administrer tout le site, et vous avez accès à toutes les fonctionnalités</p>     
+                        } else {
+                          <p>Vous ne pouvez éditer que vos posts</p>
+                      }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

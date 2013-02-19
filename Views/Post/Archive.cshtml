@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Blog.Models.Post>
+
+@{
+    ViewBag.Title = "Archive";
+    Layout = null;
+}
+
+<h3>Archive</h3>
+
+<ul class="archive">
+    @{string lastYear = "";}
+    @{string lastMonth = "";}
+
+    @foreach (var post in Model.OrderByDescending(p=> p.Date))
+    {
+        if(post.Date.ToString("yyyy") != lastYear)
+        {
+            lastYear = post.Date.ToString("yyyy");
+            <li><strong>@lastYear</strong>
+                @foreach (var postMonth in Model.OrderByDescending(p=> p.Date))
+                {
+                    <ul>
+                    @if (lastYear == postMonth.Date.ToString("yyyy") && lastMonth != postMonth.Date.ToString("MMMM"))
+                    {
+                        lastMonth = postMonth.Date.ToString("MMMM");
+                        @Html.RouteLink(lastMonth, "PostArchive", new { month =  postMonth.Date.ToString("MM"), year = postMonth.Date.ToString("yyyy")});
+                    }
+                    </ul>
+                }
+            </li>
+        }
+    }
+</ul>

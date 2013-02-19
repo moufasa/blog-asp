@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Blog.Models.Tag>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page">
+    <div class="page-header">
+<h2>Index</h2>
+</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="striped hovered">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TagId }, new { @class = "button bg-color-green" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TagId },new { @class = "button bg-color-blue" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TagId },new { @class = "button bg-color-red" })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

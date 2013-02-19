@@ -1,0 +1,27 @@
+﻿@model Blog.Models.Message
+
+@{
+    ViewBag.Title = "Success";
+}
+
+<div class="page">
+    <div class="page-header">
+        <h2>Veuillez confirmer votre message</h2>
+    </div>
+    <h3>Récapitulatif du message</h3>
+    <p>
+        <strong>Nom : </strong>@Model.Name<br />
+        <strong>Sujet : </strong>@Model.Title<br />
+        <strong>Votre Site : </strong>@Model.Site<br />
+    </p>
+    <p>
+        <strong>Contenu : </strong><br />
+        @Model.Content
+    </p>
+    <p>
+        @Html.ActionLink("Annuler", "confirm", new { id = Model.MessageId, confirm = false}, new { @class = "button bg-color-red" });
+    </p>
+    <p>
+        @Html.ActionLink("Confirmer", "confirm", new { id = Model.MessageId, confirm = true}, new { @class = "button bg-color-green" });
+    </p>
+</div>

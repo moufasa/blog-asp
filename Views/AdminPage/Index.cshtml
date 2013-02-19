@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Blog.Models.Page>
+@helper Truncate(string input, int length)
+{
+    if (input.Length <= length) {
+        @input
+    } else {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page">
+    <div class="page-header">
+        <h2>Liste des Articles</h2>
+       <div class="section"> @Html.ActionLink("Ajouter une Page", "Create", null,  new { @class="button bg-color-orange" }) </div>
+    </div>
+
+<table class="striped hovered">
+    <tr>
+        <th>
+            Author
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Contenu
+        </th>
+        <th>
+            Statut
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Truncate(item.Author, 25)
+        </td>
+        <td>
+            @Truncate(item.Title, 25)
+        </td>
+        <td>
+            @item.Date.ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Truncate(item.Content, 25)
+        </td>
+        <td>
+            @if (item.Online)
+            {
+                <span class="label label-success">En ligne</span>
+            } else {
+                <span class="label label-important">Hors ligne</span>
+            }
+            
+        </td>
+        <td style="width:350px;">
+            @Html.ActionLink("Editer", "Edit", new { id = item.PageId }, new { @class = "button bg-color-green" })
+            @Html.ActionLink("Détails", "Details", new { id=item.PageId },  new { @class = "button bg-color-blue" })
+            @Html.ActionLink("Supprimer", "Delete", new { id=item.PageId },  new { @class = "button bg-color-red" })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

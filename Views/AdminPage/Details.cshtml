@@ -1,0 +1,42 @@
+﻿@model Blog.Models.Page
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="page">
+<div class="page-header">
+<h2>Details</h2>
+</di>
+<fieldset>
+    <legend>Page</legend>
+
+    <div class="display-label">Author</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">Content</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content)
+    </div>
+
+    <div class="display-label">Online</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Online)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editer", "Edit", new { id=Model.PageId }, new { @class = "button bg-color-green" })
+    @Html.ActionLink("Retour à la listr", "Index",new { id=Model.PageId }, new { @class = "button bg-color-blue" })
+</p>
+</div>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.CurrentController = @ViewContext.Controller.ValueProvider.GetValue("controller").RawValue;
+    ViewBag.CurrentAction = @ViewContext.Controller.ValueProvider.GetValue("action").RawValue;    
+}
+
+<div class="nav-bar bg-color-red">
+        <div class="nav-bar-inner">
+            <span class="element">Administration</span>
+            <span class="divider"></span>
+            <ul class="menu">
+                <li> @Html.ActionLink("Gérer les articles", "Index", "AdminPost") </li>
+                <li> @Html.ActionLink("Gérer les pages", "Index", "AdminPage")<li>  
+                <li>@Html.ActionLink("Gérer les catégories", "Index", "AdminCategory")</li>
+                <li>@Html.ActionLink("Gérer les catégories", "Index", "AdminTag")</li>
+               
+                 @if (HttpContext.Current.User.IsInRole("Administrator")) {
+                    <li > @Html.ActionLink("Gérer les membres", "GetUsers", "Account") </li>
+                    <li>  @Html.ActionLink("Messages", "Index", "AdminMessage")  </li>     
+                  }
+               
+                    <li class="divider-vertical"></li>   
+                    <li> @Html.ActionLink("Retour au site", "Index", "Home")</li>
+                    <li> @Html.ActionLink("Se déconnecter", "LogOff", "Account")</li>
+            
+            </ul>
+                         
+        </div>
+    </div>

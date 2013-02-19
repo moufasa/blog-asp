@@ -1,0 +1,39 @@
+﻿@model Blog.Models.Post
+
+@{
+    ViewBag.Title = @Model.Title;
+}
+
+
+<div class="page secondary with-sidebar">
+        <div class="page-header">
+            <div class="page-header-content">
+               <h1>@Model.Title</h1>
+                <div>
+                    <span style="float:left;">Catégorie :@ViewBag.Categorie.Name </span> 
+                    <span style="float:right;">@Model.Date.ToString("dd/MM/yyyy")</span>
+                </div>
+            </div>
+        </div>
+            <div class="page-sidebar" style="padding-left:20px;"> 
+                <h3>Catégories</h3>
+            @{Html.RenderAction("GetMenuCategories", "Post");}
+                @{Html.RenderAction("Archive", "Post");}
+
+            </div>
+        <div class="page-region">
+            <div class="page-region-content">
+                <div style="margin-left:20px;">        
+                     @Html.Raw(Model.Content)
+                </div>               
+             </div>
+        </div>
+       <div>Liste des tags associés : </div>
+        <div class="row">
+            @foreach (var tag in Model.Tags)
+            {
+                <span>@Html.RouteLink(tag.Name,"tag",new { tagId = tag.TagId, name = tag.Name}) - </span>  
+            }
+        </div>  
+</div>
+
